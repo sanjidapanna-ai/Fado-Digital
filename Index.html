@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fado Digital — Premium Digital Agency in Lisbon, Portugal. Web Design, SEO, Digital Marketing, Social Media & PPC.">
+<meta name="keywords" content="digital agency lisbon, web design portugal, SEO lisbon, digital marketing portugal">
+<meta property="og:title" content="Fado Digital — Lisbon's Premium Digital Agency">
+<meta property="og:description" content="We craft digital experiences that move people. Based in Lisbon, working globally.">
+<title>Fado Digital — Lisbon Digital Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0D1B2A;
+  --navy-mid:#1A2E42;
+  --navy-light:#243B55;
+  --gold:#C9A84C;
+  --gold-light:#E8C97A;
+  --gold-pale:#F5E6C0;
+  --cream:#F8F4EE;
+  --cream-dark:#EDE8DF;
+  --white:#FFFFFF;
+  --text:#1A1A2E;
+  --text-soft:#5A6478;
+  --text-muted:#8A93A6;
+  --tile-blue:#1B4F8A;
+  --success:#2ECC71;
+  --error:#E74C3C;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;cursor:none;}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;}
+.cursor-ring.hover{width:52px;height:52px;border-color:var(--gold);background:rgba(201,168,76,.08);}
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--navy);color:white;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:800;flex-wrap:wrap;border-top:2px solid var(--gold);}
+.cookie-text{font-size:13px;color:rgba(255,255,255,.75);max-width:600px;line-height:1.6;}
+.cookie-text a{color:var(--gold);text-decoration:underline;}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.btn-cookie-accept{background:var(--gold);color:var(--navy);border:none;padding:10px 22px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-cookie-decline{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);padding:10px 22px;border-radius:4px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* LANGUAGE TOGGLE */
+.lang-toggle{display:flex;gap:4px;background:rgba(255,255,255,.08);border-radius:4px;padding:3px;}
+.lang-btn{background:transparent;border:none;color:rgba(255,255,255,.5);padding:4px 10px;border-radius:3px;font-size:11px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;font-family:'DM Mono',monospace;}
+.lang-btn.active{background:var(--gold);color:var(--navy);}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:400;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease;}
+.nav.scrolled{background:rgba(13,27,42,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.15);}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.logo-mark{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:18px;color:var(--gold);font-style:italic;font-weight:300;}
+.logo-text-wrap{display:flex;flex-direction:column;}
+.logo-name{font-family:'Fraunces',serif;font-size:18px;color:white;font-weight:600;line-height:1;letter-spacing:.5px;}
+.logo-sub{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.7);font-size:13px;font-weight:400;cursor:pointer;letter-spacing:.3px;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s;}
+.nav-links a:hover,.nav-links a.active{color:white;}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.btn-nav-cta{background:var(--gold);color:var(--navy);border:none;padding:10px 22px;border-radius:3px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.3px;transition:all .2s;}
+.btn-nav-cta:hover{background:var(--gold-light);}
+
+/* HERO SLIDESHOW */
+.hero{height:100vh;position:relative;overflow:hidden;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;}
+.hero-slide.active{opacity:1;}
+.hero-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:200px;opacity:.06;}
+.hero-bg-1{background:linear-gradient(135deg,#0D1B2A 0%,#1A2E42 40%,#0d2137 100%);}
+.hero-bg-2{background:linear-gradient(135deg,#1A2E42 0%,#243B55 40%,#1B4F8A 100%);}
+.hero-bg-3{background:linear-gradient(135deg,#0D1B2A 0%,#1a1a2e 40%,#2d1a0e 100%);}
+.hero-bg-4{background:linear-gradient(135deg,#1a2e42 0%,#0d2137 40%,#1a3a1a 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,27,42,.85) 40%,transparent 100%);}
+.hero-content{position:absolute;inset:0;display:flex;align-items:center;padding:0 8%;}
+.hero-inner{max-width:640px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:6px 14px;border-radius:2px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(40px,6vw,80px);color:white;line-height:1.05;font-weight:300;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-subtitle{font-size:clamp(14px,1.5vw,18px);color:rgba(255,255,255,.6);line-height:1.7;max-width:480px;margin-bottom:40px;}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-hero-primary{background:var(--gold);color:var(--navy);border:none;padding:16px 36px;font-size:14px;font-weight:600;border-radius:3px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.5px;transition:all .3s;}
+.btn-hero-primary:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-hero-ghost{background:transparent;color:white;border:1px solid rgba(255,255,255,.3);padding:16px 32px;font-size:14px;border-radius:3px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .3s;}
+.btn-hero-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
+.hero-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollLine 2s ease infinite;}
+@keyframes scrollLine{0%,100%{opacity:.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.1);}}
+.hero-scroll-label{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;}
+.slide-dots{position:absolute;bottom:80px;right:8%;display:flex;gap:10px;align-items:center;}
+.slide-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;transition:all .3s;}
+.slide-dot.active{background:var(--gold);width:20px;border-radius:3px;}
+.slide-counter{position:absolute;top:50%;right:8%;transform:translateY(-50%);font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.25);letter-spacing:2px;writing-mode:vertical-rl;}
+
+/* TICKER */
+.ticker{background:var(--gold);padding:10px 0;overflow:hidden;position:relative;}
+.ticker-inner{display:flex;gap:60px;white-space:nowrap;animation:ticker 25s linear infinite;}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:20px;}
+.ticker-item::after{content:'◆';color:var(--navy);opacity:.4;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTION STYLES */
+.section{padding:100px 8%;}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.sec-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Fraunces',serif;font-size:clamp(32px,4vw,54px);line-height:1.1;font-weight:300;margin-bottom:16px;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-desc{font-size:16px;color:var(--text-soft);line-height:1.8;max-width:580px;}
+.section-dark{background:var(--navy);}
+.section-dark .sec-eyebrow{color:var(--gold);}
+.section-dark .sec-title{color:white;}
+.section-dark .sec-desc{color:rgba(255,255,255,.5);}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.service-card{background:white;padding:44px 36px;position:relative;overflow:hidden;cursor:pointer;transition:all .4s ease;border:1px solid rgba(0,0,0,.06);}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .4s ease;}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(13,27,42,.12);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{font-size:36px;margin-bottom:20px;display:block;}
+.service-num{position:absolute;top:24px;right:28px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:1px;}
+.service-title{font-family:'Fraunces',serif;font-size:22px;color:var(--navy);margin-bottom:12px;font-weight:600;}
+.service-desc{font-size:14px;color:var(--text-soft);line-height:1.7;}
+.service-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.3px;transition:gap .2s;}
+.service-card:hover .service-link{gap:12px;}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin-top:80px;}
+.stat-block{padding:48px 36px;border-right:1px solid rgba(255,255,255,.08);text-align:center;}
+.stat-block:last-child{border-right:none;}
+.stat-num{font-family:'Fraunces',serif;font-size:52px;color:var(--gold);font-weight:300;line-height:1;}
+.stat-suf{font-size:28px;color:var(--gold-light);}
+.stat-label{font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;letter-spacing:.5px;}
+
+/* GALLERY */
+.gallery-section{padding:100px 0;background:var(--cream-dark);}
+.gallery-header{padding:0 8%;margin-bottom:48px;}
+.gallery-filters{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap;}
+.filter-btn{background:transparent;border:1px solid rgba(13,27,42,.15);color:var(--text-soft);padding:8px 20px;border-radius:2px;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.3px;}
+.filter-btn:hover,.filter-btn.active{background:var(--navy);color:white;border-color:var(--navy);}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:0 8%;}
+.gallery-item{position:relative;overflow:hidden;cursor:pointer;background:var(--navy-light);}
+.gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2;}
+.gallery-item:nth-child(5){grid-column:span 2;}
+.gallery-item-inner{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:52px;opacity:.25;transition:all .5s ease;}
+.gallery-item:nth-child(1) .gallery-item-inner{font-size:80px;}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,.9) 0%,transparent 60%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;}
+.gallery-item:hover .gallery-item-overlay{opacity:1;}
+.gallery-item:hover .gallery-item-inner{transform:scale(1.05);opacity:.35;}
+.gallery-item-title{font-family:'Fraunces',serif;font-size:16px;color:white;margin-bottom:4px;}
+.gallery-item-cat{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:900;display:flex;align-items:center;justify-content:center;}
+.lb-content{max-width:900px;width:90%;position:relative;}
+.lb-img{width:100%;aspect-ratio:16/9;background:var(--navy-light);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:100px;opacity:.3;}
+.lb-close{position:absolute;top:-48px;right:0;background:none;border:1px solid rgba(255,255,255,.2);color:white;width:36px;height:36px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.lb-caption{margin-top:16px;text-align:center;}
+.lb-title{font-family:'Fraunces',serif;font-size:20px;color:white;margin-bottom:4px;}
+.lb-cat{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.lb-nav{display:flex;justify-content:center;gap:12px;margin-top:20px;}
+.lb-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:white;padding:10px 24px;border-radius:3px;font-size:13px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.lb-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+
+/* VIDEO */
+.video-section{padding:100px 8%;background:var(--navy);}
+.video-wrap{margin-top:60px;position:relative;border-radius:8px;overflow:hidden;max-width:900px;margin-left:auto;margin-right:auto;}
+.video-thumb{aspect-ratio:16/9;background:var(--navy-mid);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;}
+.video-thumb-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:160px;opacity:.08;}
+.video-thumb-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,27,42,.6),rgba(27,79,138,.4));}
+.play-circle{width:80px;height:80px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:all .3s;cursor:pointer;}
+.play-circle::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(201,168,76,.3);border-radius:50%;animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.15);opacity:0;}}
+.play-icon{font-size:28px;margin-left:4px;color:var(--gold);}
+.video-thumb:hover .play-circle{background:var(--gold);border-color:var(--gold);}
+.video-thumb:hover .play-icon{color:var(--navy);}
+.video-label{position:absolute;bottom:24px;left:24px;z-index:1;}
+.video-label-title{font-family:'Fraunces',serif;font-size:20px;color:white;margin-bottom:4px;}
+.video-label-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;}
+.video-embed{aspect-ratio:16/9;width:100%;}
+.video-embed iframe{width:100%;height:100%;border:none;}
+
+/* TESTIMONIALS */
+.testimonials-section{padding:100px 8%;background:var(--cream);}
+.t-track-wrap{overflow:hidden;margin-top:60px;}
+.t-track{display:flex;gap:24px;transition:transform .6s cubic-bezier(.25,.46,.45,.94);}
+.t-card{background:white;border-radius:4px;padding:40px;min-width:380px;flex-shrink:0;position:relative;border-left:3px solid var(--gold);box-shadow:0 4px 24px rgba(13,27,42,.06);}
+.t-stars{display:flex;gap:4px;margin-bottom:20px;}
+.t-star{color:var(--gold);font-size:14px;}
+.t-quote{font-family:'Fraunces',serif;font-size:18px;color:var(--navy);line-height:1.6;font-style:italic;margin-bottom:24px;font-weight:300;}
+.t-author{display:flex;align-items:center;gap:14px;}
+.t-avatar{width:46px;height:46px;border-radius:50%;background:var(--navy-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.t-name{font-weight:600;color:var(--navy);font-size:14px;margin-bottom:2px;}
+.t-company{font-size:12px;color:var(--text-muted);font-family:'DM Mono',monospace;}
+.t-controls{display:flex;align-items:center;gap:16px;margin-top:36px;}
+.t-arrow{width:44px;height:44px;border:1px solid rgba(13,27,42,.15);border-radius:50%;background:transparent;color:var(--navy);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.t-arrow:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.t-dots{display:flex;gap:6px;align-items:center;}
+.t-dot{width:6px;height:6px;border-radius:50%;background:rgba(13,27,42,.15);transition:all .3s;}
+.t-dot.active{background:var(--gold);width:18px;border-radius:3px;}
+
+/* FAQ */
+.faq-section{padding:100px 8%;background:var(--navy);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:60px;}
+.faq-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);overflow:hidden;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;cursor:pointer;gap:16px;transition:background .2s;}
+.faq-q:hover{background:rgba(255,255,255,.04);}
+.faq-q-text{font-size:15px;color:white;font-weight:400;line-height:1.4;}
+.faq-toggle{width:28px;height:28px;border:1px solid rgba(201,168,76,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:16px;transition:all .3s;}
+.faq-toggle.open{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;}
+.faq-a.open{max-height:200px;padding:0 28px 24px;}
+
+/* NEWS */
+.news-section{padding:100px 8%;background:var(--cream-dark);}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
+.news-card{background:white;border-radius:4px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.news-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(13,27,42,.12);}
+.news-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:56px;opacity:.3;position:relative;overflow:hidden;}
+.news-img-1{background:linear-gradient(135deg,#0D1B2A,#1B4F8A);}
+.news-img-2{background:linear-gradient(135deg,#1A2E42,#2d3a1a);}
+.news-img-3{background:linear-gradient(135deg,#2d1a0e,#1A2E42);}
+.news-date-tag{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--navy);padding:4px 10px;border-radius:2px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;font-weight:600;}
+.news-body{padding:24px;}
+.news-cat{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.news-title{font-family:'Fraunces',serif;font-size:20px;color:var(--navy);line-height:1.3;margin-bottom:10px;font-weight:400;}
+.news-excerpt{font-size:13px;color:var(--text-soft);line-height:1.7;margin-bottom:16px;}
+.news-read-more{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.5px;display:flex;align-items:center;gap:6px;}
+
+/* MAP */
+.map-section{padding:100px 8%;background:var(--cream);}
+.map-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:center;margin-top:60px;}
+.map-info{display:flex;flex-direction:column;gap:24px;}
+.map-detail{display:flex;gap:16px;align-items:flex-start;}
+.map-detail-icon{width:44px;height:44px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.map-detail-title{font-weight:600;color:var(--navy);font-size:14px;margin-bottom:4px;}
+.map-detail-text{font-size:13px;color:var(--text-soft);line-height:1.6;}
+.map-frame{border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(13,27,42,.12);}
+.map-placeholder{height:380px;background:var(--navy-light);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.map-placeholder-icon{font-size:56px;opacity:.2;}
+.map-placeholder-text{color:rgba(255,255,255,.4);font-size:14px;text-align:center;max-width:280px;line-height:1.6;}
+.map-placeholder-code{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);opacity:.7;text-align:center;max-width:320px;line-height:1.6;}
+.btn-directions{background:var(--gold);color:var(--navy);border:none;padding:12px 24px;border-radius:3px;font-size:13px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'DM Sans',sans-serif;}
+
+/* CONTACT */
+.contact-section{padding:100px 8%;background:var(--navy);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;margin-top:60px;}
+.contact-info{display:flex;flex-direction:column;gap:32px;}
+.contact-wa-card{background:linear-gradient(135deg,#075E54,#128C7E);border-radius:8px;padding:28px;display:flex;gap:16px;align-items:center;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.contact-wa-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+.wa-icon-big{font-size:40px;}
+.wa-card-title{font-family:'Fraunces',serif;font-size:20px;color:white;margin-bottom:4px;}
+.wa-card-sub{font-size:13px;color:rgba(255,255,255,.7);}
+.contact-detail{display:flex;gap:14px;align-items:flex-start;}
+.cd-icon{width:40px;height:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.cd-title{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:4px;}
+.cd-text{font-size:14px;color:rgba(255,255,255,.75);}
+.contact-form{display:flex;flex-direction:column;gap:16px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.f-group{display:flex;flex-direction:column;gap:6px;}
+.f-label{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace;}
+.f-input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:13px 16px;font-size:14px;color:white;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif;}
+.f-input:focus{border-color:var(--gold);}
+.f-input::placeholder{color:rgba(255,255,255,.2);}
+.f-textarea{resize:none;min-height:120px;}
+.f-select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:13px 16px;font-size:14px;color:rgba(255,255,255,.75);outline:none;font-family:'DM Sans',sans-serif;}
+.f-select option{background:var(--navy);color:white;}
+.btn-send{background:var(--gold);color:var(--navy);border:none;padding:15px 36px;font-size:14px;font-weight:700;border-radius:3px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.5px;display:flex;align-items:center;gap:10px;transition:all .2s;width:fit-content;}
+.btn-send:hover{background:var(--gold-light);transform:translateY(-2px);}
+.btn-send:disabled{background:#aaa;cursor:not-allowed;transform:none;}
+.form-success{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:20px;text-align:center;color:#2ECC71;}
+
+/* FOOTER */
+.footer{background:#060D14;padding:64px 8% 28px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:48px;margin-bottom:56px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.06);}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.footer-desc{font-size:13px;color:rgba(255,255,255,.35);line-height:1.8;max-width:260px;margin-bottom:24px;}
+.footer-social{display:flex;gap:10px;}
+.social-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;color:rgba(255,255,255,.4);}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-col-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{color:rgba(255,255,255,.35);font-size:13px;cursor:pointer;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.newsletter-form{display:flex;gap:0;margin-top:4px;border:1px solid rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.nl-input{flex:1;background:transparent;border:none;padding:11px 14px;font-size:13px;color:white;outline:none;font-family:'DM Sans',sans-serif;}
+.nl-input::placeholder{color:rgba(255,255,255,.2);}
+.nl-btn{background:var(--gold);border:none;color:var(--navy);padding:11px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.2);}
+.footer-legal{display:flex;gap:20px;}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,.2);cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:.5px;}
+.footer-legal a:hover{color:var(--gold);}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:700;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wa-bubble{width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.4);position:relative;transition:transform .2s;}
+.wa-bubble:hover{transform:scale(1.08);}
+.wa-bubble::before{content:'';position:absolute;inset:-6px;border:2px solid rgba(37,211,102,.3);border-radius:50%;animation:waPulse 2s ease infinite;}
+.wa-bubble::after{content:'';position:absolute;inset:-12px;border:1px solid rgba(37,211,102,.15);border-radius:50%;animation:waPulse 2s ease .4s infinite;}
+@keyframes waPulse{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.4);opacity:0;}}
+.wa-tooltip{background:var(--navy);color:white;padding:10px 16px;border-radius:4px;font-size:12px;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);}
+.wa-tooltip strong{color:var(--gold);display:block;font-size:11px;margin-bottom:2px;font-family:'DM Mono',monospace;letter-spacing:1px;}
+
+/* NOTIFICATIONS */
+.notif-wrap{position:fixed;top:88px;right:20px;z-index:600;display:flex;flex-direction:column;gap:10px;pointer-events:none;}
+.notif-item{background:white;border-radius:4px;padding:14px 18px;box-shadow:0 8px 30px rgba(0,0,0,.12);border-left:3px solid var(--success);min-width:280px;pointer-events:all;animation:slideIn .3s ease;}
+.notif-item.err{border-left-color:var(--error);}
+.notif-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.notif-msg{font-size:12px;color:var(--text-soft);}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:translateX(0);}}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:fadeUp .7s ease both;}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hero-title{font-size:36px;}
+  .services-grid{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+  .gallery-item:nth-child(1){grid-column:span 1;grid-row:span 1;}
+  .gallery-item:nth-child(5){grid-column:span 1;}
+  .faq-grid{grid-template-columns:1fr;}
+  .news-grid{grid-template-columns:1fr;}
+  .map-inner{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .t-card{min-width:300px;}
+  .form-row{grid-template-columns:1fr;}
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef} = React;
+
+/* DATA */
+const SLIDES=[
+  {emoji:'🌉',tag:'Digital Agency · Lisboa',title:['Crafting Digital','Experiences That','Move People'],sub:'We help Portuguese businesses grow online with world-class web design, SEO and digital marketing.',cta:'Start Your Project'},
+  {emoji:'🎨',tag:'Web Design · Branding',title:['Your Brand,','Reimagined for','The Digital Age'],sub:'From stunning websites to full brand identities — we build digital presence that converts visitors into clients.',cta:'See Our Work'},
+  {emoji:'📈',tag:'SEO · Paid Ads · Social',title:['More Visibility.','More Clients.','More Growth.'],sub:'Data-driven marketing strategies that put your business in front of the right people at the right moment.',cta:'Grow With Us'},
+  {emoji:'🏛️',tag:'Based in Lisbon · Global Reach',title:['Rooted in Lisbon,','Reaching the','Whole World'],sub:'A boutique agency with local insight and global standards. We speak your language — in every sense.',cta:'Meet the Team'},
+];
+
+const SERVICES=[
+  {icon:'💻',num:'01',title:'Website Design & Development',desc:'Stunning, fast, mobile-first websites built to convert. From landing pages to full e-commerce platforms. We design and build with purpose.'},
+  {icon:'📣',num:'02',title:'Digital Marketing Strategy',desc:'Comprehensive digital strategies tailored to your business goals. We map the path from awareness to conversion with clarity and precision.'},
+  {icon:'🔍',num:'03',title:'Search Engine Optimisation',desc:'Get found on Google. We combine technical SEO, content strategy and link building to drive sustainable organic traffic to your business.'},
+  {icon:'💰',num:'04',title:'Paid Advertising (PPC)',desc:'Maximise your ROI with expertly managed Google Ads, Meta Ads and LinkedIn campaigns. Every euro works harder with our data-driven approach.'},
+  {icon:'📱',num:'05',title:'Social Media Management',desc:'Consistent, engaging social media content that builds community and drives real business results across Instagram, LinkedIn, Facebook and TikTok.'},
+  {icon:'✍️',num:'06',title:'Content Creation & Copywriting',desc:'Words and visuals that resonate. From blog posts to video scripts — compelling content that reflects your brand voice and drives action.'},
+];
+
+const GALLERY_ITEMS=[
+  {emoji:'🖥️',title:'Cascais Restaurant Group',cat:'Web Design'},
+  {emoji:'📊',title:'Lisboa Finance Group',cat:'Digital Marketing'},
+  {emoji:'🛍️',title:'Porto Fashion Brand',cat:'E-commerce'},
+  {emoji:'🏨',title:'Algarve Hotel Resort',cat:'SEO & Content'},
+  {emoji:'⚖️',title:'Legal Firm Branding',cat:'Branding'},
+  {emoji:'🎵',title:'Fado Music Festival',cat:'Social Media'},
+  {emoji:'🏗️',title:'Real Estate Portugal',cat:'PPC Campaigns'},
+];
+
+const TESTIMONIALS=[
+  {stars:5,quote:'Fado Digital transformed our online presence completely. Our website traffic increased by 340% in just 6 months. The team is professional, creative, and truly understands the Portuguese market.',name:'Ana Ferreira',company:'CEO, Cascais Dining Group',avatar:'👩‍💼'},
+  {stars:5,quote:'Working with Fado Digital was a game-changer for our business. Their SEO strategy brought us to the first page of Google for all our key terms. Incredible results.',name:'Miguel Santos',company:'Director, Lisboa Tech Solutions',avatar:'👨‍💼'},
+  {stars:5,quote:'The team at Fado Digital designed a website that perfectly captures our brand. Professional, modern, and our conversion rate doubled within the first month of launch.',name:'Sofia Costa',company:'Founder, Porto Artisan Shop',avatar:'👩‍🎨'},
+  {stars:5,quote:'Their social media management brought our brand to life. We went from 2,000 to 28,000 followers in four months. Exceptional creativity and strategy.',name:'Ricardo Oliveira',company:'MD, Algarve Luxury Resorts',avatar:'👨'},
+  {stars:5,quote:'Fado Digital\'s PPC campaigns delivered a 4x return on ad spend from the very first month. They know exactly how to reach the right audience and convert them.',name:'Catarina Mendes',company:'Marketing Director, Lisbon Retail',avatar:'👩'},
+];
+
+const FAQS=[
+  {q:'What services does Fado Digital offer?',a:'We offer a full suite of digital services including website design & development, SEO, digital marketing strategy, paid advertising (Google & Meta Ads), social media management, and content creation.'},
+  {q:'Quanto tempo demora a criar um website?',a:'O prazo depende da complexidade do projeto. Um website simples pode estar pronto em 2-3 semanas. Projetos mais complexos, como e-commerce, podem demorar 6-10 semanas. Sempre cumprimos os prazos acordados.'},
+  {q:'Do you work with businesses outside Portugal?',a:'Absolutely! While we are based in Lisbon, we work with clients across Europe and internationally. We have experience with UK, French, German and Brazilian markets.'},
+  {q:'Qual é o investimento mínimo para começar?',a:'Os nossos pacotes começam a partir de €800/mês para serviços de marketing digital, e websites a partir de €1,500. Oferecemos soluções adaptadas a diferentes orçamentos e necessidades.'},
+  {q:'How do you measure the success of campaigns?',a:'We provide monthly performance reports with clear KPIs: traffic, leads, conversion rates, ROAS for paid ads, and keyword rankings for SEO. Full transparency on every euro spent.'},
+  {q:'Do you offer ongoing support after website launch?',a:'Yes. We offer monthly maintenance and support packages that include security updates, performance monitoring, content updates, and technical support. Your success is our priority.'},
+];
+
+const NEWS=[
+  {img:'news-img-1',emoji:'📈',date:'APR 2026',cat:'Case Study',title:'How We Grew a Lisbon Restaurant\'s Revenue by 180%',excerpt:'A detailed look at our 6-month digital strategy for Cascais Dining Group — from website redesign to full social media management.'},
+  {img:'news-img-2',emoji:'🔍',date:'MAR 2026',cat:'SEO Tips',title:'The 2026 Guide to SEO in Portugal: What\'s Changed',excerpt:'Google\'s latest algorithm updates have shifted the SEO landscape in Portugal. Here\'s what local businesses need to know to stay ahead.'},
+  {img:'news-img-3',emoji:'🎯',date:'FEB 2026',cat:'Agency News',title:'Fado Digital Wins Best Digital Agency in Lisbon 2026',excerpt:'We are thrilled to announce that Fado Digital has been named Best Digital Agency in Lisbon at the Portuguese Digital Awards 2026.'},
+];
+
+const fmt=n=>n;
+
+/* CURSOR */
+function Cursor(){
+  const [pos,setPos]=useState({x:-100,y:-100});
+  const [hover,setHover]=useState(false);
+  useEffect(()=>{
+    const move=e=>{setPos({x:e.clientX,y:e.clientY});};
+    const over=e=>{if(e.target.closest('button,a,.service-card,.gallery-item,.news-card,.t-card'))setHover(true);else setHover(false);};
+    document.addEventListener('mousemove',move);
+    document.addEventListener('mouseover',over);
+    return()=>{document.removeEventListener('mousemove',move);document.removeEventListener('mouseover',over);};
+  },[]);
+  return <>
+    <div className="cursor" style={{left:pos.x,top:pos.y}}/>
+    <div className={`cursor-ring ${hover?'hover':''}`} style={{left:pos.x,top:pos.y}}/>
+  </>;
+}
+
+/* COOKIE BANNER */
+function CookieBanner(){
+  const [show,setShow]=useState(true);
+  if(!show)return null;
+  return <div className="cookie-banner">
+    <div className="cookie-text">🍪 We use cookies to enhance your experience. By continuing to visit this site you agree to our <a href="#">Cookie Policy</a> and <a href="#">Privacy Policy</a>. Este site usa cookies em conformidade com o RGPD.</div>
+    <div className="cookie-btns">
+      <button className="btn-cookie-accept" onClick={()=>setShow(false)}>Accept All · Aceitar</button>
+      <button className="btn-cookie-decline" onClick={()=>setShow(false)}>Essential Only</button>
+    </div>
+  </div>;
+}
+
+/* NAV */
+function Nav({page,setPage,lang,setLang}){
+  const [scrolled,setScrolled]=useState(false);
+  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>60);window.addEventListener('scroll',fn);return()=>window.removeEventListener('scroll',fn);},[]);
+  const waMsg=encodeURIComponent('Hi Fado Digital, I\'m interested in your services.');
+  return <nav className={`nav ${scrolled?'scrolled':''}`}>
+    <div className="nav-logo" onClick={()=>setPage('home')}>
+      <div className="logo-mark">F</div>
+      <div className="logo-text-wrap">
+        <span className="logo-name">Fado Digital</span>
+        <span className="logo-sub">Digital Agency · Lisboa</span>
+      </div>
+    </div>
+    <ul className="nav-links">
+      {[['home','Home'],['services','Services'],['work','Work'],['about','About'],['news','News'],['contact','Contact']].map(([p,l])=><li key={p}><a className={page===p?'active':''} onClick={()=>setPage(p)}>{l}</a></li>)}
+    </ul>
+    <div className="nav-right">
+      <div className="lang-toggle">
+        <button className={`lang-btn ${lang==='en'?'active':''}`} onClick={()=>setLang('en')}>EN</button>
+        <button className={`lang-btn ${lang==='pt'?'active':''}`} onClick={()=>setLang('pt')}>PT</button>
+      </div>
+      <button className="btn-nav-cta" onClick={()=>window.open(`https://wa.me/351XXXXXXXXX?text=${waMsg}`,'_blank')}>
+        💬 {lang==='pt'?'Falar Connosco':'Let\'s Talk'}
+      </button>
+    </div>
+  </nav>;
+}
+
+/* HERO */
+function Hero({setPage,lang}){
+  const [cur,setCur]=useState(0);
+  useEffect(()=>{const t=setInterval(()=>setCur(c=>(c+1)%SLIDES.length),5500);return()=>clearInterval(t);},[]);
+  const s=SLIDES[cur];
+  return <div className="hero">
+    {SLIDES.map((sl,i)=><div key={i} className={`hero-slide hero-bg-${i+1} ${i===cur?'active':''}`}>
+      <div className="hero-bg">{sl.emoji}</div>
+      <div className="hero-overlay"/>
+    </div>)}
+    <div className="hero-content">
+      <div className="hero-inner">
+        <div className="hero-tag">◆ {s.tag}</div>
+        <h1 className="hero-title">{s.title.map((l,i)=><span key={i}>{i===1?<em>{l}</em>:l}<br/></span>)}</h1>
+        <p className="hero-subtitle">{s.sub}</p>
+        <div className="hero-cta-row">
+          <button className="btn-hero-primary" onClick={()=>setPage('contact')}>{s.cta} →</button>
+          <button className="btn-hero-ghost" onClick={()=>setPage('work')}>View Our Work</button>
+        </div>
+      </div>
+    </div>
+    <div className="slide-dots">
+      {SLIDES.map((_,i)=><button key={i} className={`slide-dot ${i===cur?'active':''}`} onClick={()=>setCur(i)}/>)}
+    </div>
+    <div className="slide-counter">{String(cur+1).padStart(2,'0')} / {String(SLIDES.length).padStart(2,'0')}</div>
+    <div className="hero-scroll" onClick={()=>window.scrollBy({top:window.innerHeight,behavior:'smooth'})}>
+      <div className="hero-scroll-line"/>
+      <span className="hero-scroll-label">Scroll</span>
+    </div>
+  </div>;
+}
+
+/* TICKER */
+function Ticker(){
+  const items=['Web Design','SEO','Digital Marketing','Paid Advertising','Social Media','Content Creation','Branding','E-commerce','Analytics','UX Design'];
+  const doubled=[...items,...items];
+  return <div className="ticker"><div className="ticker-inner">{doubled.map((t,i)=><span key={i} className="ticker-item">{t}</span>)}</div></div>;
+}
+
+/* SERVICES */
+function Services({setPage}){
+  return <section className="section" style={{background:' var(--cream)',padding:'100px 8%'}}>
+    <div className="sec-eyebrow">What We Do</div>
+    <h2 className="sec-title">Services Built for <em>Results</em></h2>
+    <p className="sec-desc">Every service we offer is designed with one goal in mind — growing your business in the digital world.</p>
+    <div className="services-grid">
+      {SERVICES.map((s,i)=><div key={i} className="service-card">
+        <span className="service-num">{s.num}</span>
+        <span className="service-icon">{s.icon}</span>
+        <div className="service-title">{s.title}</div>
+        <div className="service-desc">{s.desc}</div>
+        <div className="service-link" onClick={()=>setPage('contact')}>Get Started →</div>
+      </div>)}
+    </div>
+    <div className="stats-row" style={{background:'var(--navy)',borderRadius:4,marginTop:60}}>
+      {[['150','+','Projects Delivered'],['98','%','Client Satisfaction'],['6','yrs','In Business'],['3','×','Avg ROI Generated']].map(([n,s,l])=><div key={l} className="stat-block">
+        <div className="stat-num">{n}<span className="stat-suf">{s}</span></div>
+        <div className="stat-label">{l}</div>
+      </div>)}
+    </div>
+  </section>;
+}
+
+/* GALLERY */
+function Gallery(){
+  const [active,setActive]=useState('All');
+  const [lightbox,setLightbox]=useState(null);
+  const cats=['All','Web Design','Digital Marketing','SEO & Content','Branding','Social Media'];
+  const filtered=active==='All'?GALLERY_ITEMS:GALLERY_ITEMS.filter(g=>g.cat.toLowerCase().includes(active.toLowerCase().split(' ')[0].toLowerCase()));
+  return <section className="gallery-section">
+    <div className="gallery-header">
+      <div className="sec-eyebrow">Our Work</div>
+      <h2 className="sec-title">Selected <em>Projects</em></h2>
+      <div className="gallery-filters">{cats.map(c=><button key={c} className={`filter-btn ${active===c?'active':''}`} onClick={()=>setActive(c)}>{c}</button>)}</div>
+    </div>
+    <div className="gallery-grid">
+      {filtered.map((g,i)=><div key={i} className="gallery-item" onClick={()=>setLightbox(i)} style={{background:['#0D1B2A','#1A2E42','#243B55','#1B4F8A','#1a2e1a','#2e1a1a','#1a1a2e'][i%7]}}>
+        <div className="gallery-item-inner">{g.emoji}</div>
+        <div className="gallery-item-overlay">
+          <div className="gallery-item-title">{g.title}</div>
+          <div className="gallery-item-cat">{g.cat}</div>
+        </div>
+      </div>)}
+    </div>
+    {lightbox!==null&&<div className="lightbox" onClick={()=>setLightbox(null)}>
+      <div className="lb-content" onClick={e=>e.stopPropagation()}>
+        <button className="lb-close" onClick={()=>setLightbox(null)}>✕</button>
+        <div className="lb-img">{filtered[lightbox]?.emoji}</div>
+        <div className="lb-caption">
+          <div className="lb-title">{filtered[lightbox]?.title}</div>
+          <div className="lb-cat">{filtered[lightbox]?.cat}</div>
+        </div>
+        <div className="lb-nav">
+          <button className="lb-btn" onClick={()=>setLightbox((lightbox-1+filtered.length)%filtered.length)}>← Previous</button>
+          <button className="lb-btn" onClick={()=>setLightbox((lightbox+1)%filtered.length)}>Next →</button>
+        </div>
+      </div>
+    </div>}
+  </section>;
+}
+
+/* VIDEO */
+function VideoSection(){
+  const [playing,setPlaying]=useState(false);
+  return <section className="video-section">
+    <div className="sec-eyebrow" style={{color:'var(--gold)'}}>Showreel</div>
+    <h2 className="sec-title" style={{color:'white'}}>Watch Us Work <em>Our Magic</em></h2>
+    <p className="sec-desc">See how we transform businesses through powerful digital strategies and stunning design.</p>
+    <div className="video-wrap">
+      {playing
+        ?<div className="video-embed"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allow="autoplay;encrypted-media" allowFullScreen/></div>
+        :<div className="video-thumb" onClick={()=>setPlaying(true)}>
+          <div className="video-thumb-bg">🎬</div>
+          <div className="video-thumb-overlay"/>
+          <div className="play-circle"><div className="play-icon">▶</div></div>
+          <div className="video-label">
+            <div className="video-label-title">Fado Digital — Agency Showreel 2026</div>
+            <div className="video-label-sub">◆ 2 min · Digital Agency Lisboa</div>
+          </div>
+        </div>}
+    </div>
+    <p style={{fontSize:11,color:'rgba(255,255,255,.2)',marginTop:12,textAlign:'center',fontFamily:'DM Mono,monospace',letterSpacing:1}}>DEMO · Replace YouTube ID with your real showreel video</p>
+  </section>;
+}
+
+/* TESTIMONIALS */
+function Testimonials(){
+  const [idx,setIdx]=useState(0);
+  const vis=3;
+  useEffect(()=>{const t=setInterval(()=>setIdx(i=>i>=TESTIMONIALS.length-vis?0:i+1),4000);return()=>clearInterval(t);},[]);
+  return <section className="testimonials-section">
+    <div className="sec-eyebrow">Client Stories</div>
+    <h2 className="sec-title">Trusted by <em>Great Businesses</em></h2>
+    <div className="t-track-wrap">
+      <div className="t-track" style={{transform:`translateX(-${idx*(380+24)}px)`}}>
+        {TESTIMONIALS.map((t,i)=><div key={i} className="t-card">
+          <div className="t-stars">{Array(t.stars).fill(0).map((_,j)=><span key={j} className="t-star">★</span>)}</div>
+          <div className="t-quote">"{t.quote}"</div>
+          <div className="t-author">
+            <div className="t-avatar">{t.avatar}</div>
+            <div><div className="t-name">{t.name}</div><div className="t-company">{t.company}</div></div>
+          </div>
+        </div>)}
+      </div>
+    </div>
+    <div className="t-controls">
+      <button className="t-arrow" onClick={()=>setIdx(i=>Math.max(0,i-1))}>‹</button>
+      <div className="t-dots">{TESTIMONIALS.map((_,i)=><div key={i} className={`t-dot ${i>=idx&&i<idx+vis?'active':''}`}/>)}</div>
+      <button className="t-arrow" onClick={()=>setIdx(i=>Math.min(TESTIMONIALS.length-vis,i+1))}>›</button>
+    </div>
+  </section>;
+}
+
+/* FAQ */
+function FAQ(){
+  const [open,setOpen]=useState(null);
+  return <section className="faq-section">
+    <div className="sec-eyebrow" style={{color:'var(--gold)'}}>FAQ</div>
+    <h2 className="sec-title" style={{color:'white'}}>Common <em>Questions</em></h2>
+    <div className="faq-grid">
+      {FAQS.map((f,i)=><div key={i} className="faq-item">
+        <div className="faq-q" onClick={()=>setOpen(open===i?null:i)}>
+          <span className="faq-q-text">{f.q}</span>
+          <span className={`faq-toggle ${open===i?'open':''}`}>+</span>
+        </div>
+        <div className={`faq-a ${open===i?'open':''}`}>{f.a}</div>
+      </div>)}
+    </div>
+  </section>;
+}
+
+/* NEWS */
+function News(){
+  return <section className="news-section">
+    <div className="sec-header" style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',marginBottom:0,flexWrap:'wrap',gap:16}}>
+      <div><div className="sec-eyebrow">Insights</div><h2 className="sec-title">News & <em>Insights</em></h2></div>
+      <button style={{background:'transparent',border:'1px solid rgba(13,27,42,.2)',color:'var(--navy)',padding:'10px 24px',borderRadius:3,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:'DM Sans,sans-serif'}}>View All Articles →</button>
+    </div>
+    <div className="news-grid">
+      {NEWS.map((n,i)=><div key={i} className="news-card">
+        <div className={`news-img ${n.img}`}>
+          <span style={{fontSize:56,opacity:.25}}>{n.emoji}</span>
+          <span className="news-date-tag">{n.date}</span>
+        </div>
+        <div className="news-body">
+          <div className="news-cat">{n.cat}</div>
+          <div className="news-title">{n.title}</div>
+          <div className="news-excerpt">{n.excerpt}</div>
+          <div className="news-read-more">Read Article →</div>
+        </div>
+      </div>)}
+    </div>
+  </section>;
+}
+
+/* MAP */
+function MapSection(){
+  return <section className="map-section">
+    <div className="sec-eyebrow">Find Us</div>
+    <h2 className="sec-title">We're in the Heart of <em>Lisbon</em></h2>
+    <div className="map-inner">
+      <div className="map-info">
+        {[['📍','Our Office','Rua Augusta 123, 3º Andar\n1100-048 Lisboa, Portugal'],['🕐','Working Hours','Monday – Friday\n09:00 – 18:00 (WET/WEST)'],['📞','Phone','(+351) 21 XXX XXXX\n(+351) 9X XXX XXXX'],['✉️','Email','hello@fadodigital.pt\nprojects@fadodigital.pt']].map(([icon,title,text])=><div key={title} className="map-detail">
+          <div className="map-detail-icon">{icon}</div>
+          <div><div className="map-detail-title">{title}</div><div className="map-detail-text" style={{whiteSpace:'pre-line'}}>{text}</div></div>
+        </div>)}
+        <button className="btn-directions" onClick={()=>window.open('https://maps.google.com/?q=Rua+Augusta+Lisboa','_blank')}>Get Directions 📍</button>
+      </div>
+      <div className="map-frame">
+        <div className="map-placeholder">
+          <div className="map-placeholder-icon">🗺️</div>
+          <div className="map-placeholder-text">Embed your Google Map here</div>
+          <div className="map-placeholder-code">Go to maps.google.com → Search "Rua Augusta 123 Lisboa" → Share → Embed → Copy &lt;iframe&gt; code and replace this section</div>
+        </div>
+      </div>
+    </div>
+  </section>;
+}
+
+/* CONTACT */
+function Contact({addNotif,lang}){
+  const [f,setF]=useState({name:'',email:'',phone:'',service:'',message:''});
+  const [loading,setLoading]=useState(false);
+  const [done,setDone]=useState(false);
+  const waMsg=encodeURIComponent('Hi Fado Digital, I\'m interested in your services.');
+  const submit=async()=>{
+    if(!f.name||!f.email||!f.message){addNotif({title:'Please fill all fields',msg:'Name, email and message are required.',type:'err'});return;}
+    setLoading(true);
+    await new Promise(r=>setTimeout(r,1500));
+    setLoading(false);setDone(true);
+    addNotif({title:'Message sent! ✅',msg:'We\'ll get back to you within 24 hours.',type:'success'});
+  };
+  return <section className="contact-section">
+    <div className="sec-eyebrow" style={{color:'var(--gold)'}}>Get In Touch</div>
+    <h2 className="sec-title" style={{color:'white'}}>Let's Build Something <em>Great</em></h2>
+    <div className="contact-grid">
+      <div className="contact-info">
+        <div className="contact-wa-card" onClick={()=>window.open(`https://wa.me/351XXXXXXXXX?text=${waMsg}`,'_blank')}>
+          <div className="wa-icon-big">💬</div>
+          <div>
+            <div className="wa-card-title">Chat on WhatsApp</div>
+            <div className="wa-card-sub">Our preferred way to connect. Fast replies, Mon–Fri 9am–6pm. Click to start chatting now →</div>
+          </div>
+        </div>
+        {[['📧','Email Us','hello@fadodigital.pt'],['📞','Call Us','(+351) 21 XXX XXXX'],['📍','Visit Us','Rua Augusta 123, Lisboa'],['⏰','Response Time','Within 24 hours']].map(([i,t,v])=><div key={t} className="contact-detail">
+          <div className="cd-icon">{i}</div>
+          <div><div className="cd-title">{t}</div><div className="cd-text">{v}</div></div>
+        </div>)}
+      </div>
+      <div>
+        {done?<div className="form-success"><div style={{fontSize:48,marginBottom:16}}>🎉</div><div style={{fontFamily:'Fraunces,serif',fontSize:22,marginBottom:8}}>Message Received!</div><div style={{fontSize:14,opacity:.8}}>We'll be in touch within 24 hours. Alternatively, WhatsApp us for a faster response.</div></div>
+        :<div className="contact-form">
+          <div className="form-row">
+            <div className="f-group"><label className="f-label">Your Name</label><input className="f-input" placeholder="João Silva" value={f.name} onChange={e=>setF({...f,name:e.target.value})}/></div>
+            <div className="f-group"><label className="f-label">Email Address</label><input className="f-input" type="email" placeholder="joao@empresa.pt" value={f.email} onChange={e=>setF({...f,email:e.target.value})}/></div>
+          </div>
+          <div className="form-row">
+            <div className="f-group"><label className="f-label">Phone (Optional)</label><input className="f-input" placeholder="+351 9X XXX XXXX" value={f.phone} onChange={e=>setF({...f,phone:e.target.value})}/></div>
+            <div className="f-group"><label className="f-label">Service Interested In</label><select className="f-select" value={f.service} onChange={e=>setF({...f,service:e.target.value})}><option value="">Select a service...</option><option>Website Design & Development</option><option>Digital Marketing Strategy</option><option>SEO Optimisation</option><option>Paid Advertising (PPC)</option><option>Social Media Management</option><option>Content Creation</option><option>Full Package</option></select></div>
+          </div>
+          <div className="f-group"><label className="f-label">Your Message</label><textarea className="f-input f-textarea" placeholder="Tell us about your project, goals, and budget..." value={f.message} onChange={e=>setF({...f,message:e.target.value})}/></div>
+          <button className="btn-send" onClick={submit} disabled={loading}>{loading?'⏳ Sending...':'Send Message ✉️'}</button>
+          <div style={{fontSize:11,color:'rgba(255,255,255,.2)',fontFamily:'DM Mono,monospace',letterSpacing:.5}}>OR · start a WhatsApp conversation for a faster response →</div>
+        </div>}
+      </div>
+    </div>
+  </section>;
+}
+
+/* FOOTER */
+function Footer(){
+  const [nlEmail,setNlEmail]=useState('');
+  const waMsg=encodeURIComponent('Hi Fado Digital, I\'m interested in your services.');
+  return <footer className="footer">
+    <div className="footer-top">
+      <div className="footer-brand">
+        <div className="footer-logo">
+          <div className="logo-mark">F</div>
+          <div><span className="logo-name" style={{fontSize:16}}>Fado Digital</span><span className="logo-sub" style={{display:'block'}}>Digital Agency · Lisboa</span></div>
+        </div>
+        <p className="footer-desc">A premium digital agency based in Lisbon, helping Portuguese businesses grow online through world-class web design, SEO and digital marketing.</p>
+        <div className="footer-social">
+          {['📘','📸','💼','🐦','▶️'].map((i,idx)=><div key={idx} className="social-btn">{i}</div>)}
+        </div>
+      </div>
+      <div>
+        <p className="footer-col-title">Services</p>
+        <ul className="footer-links">{['Web Design','SEO','Digital Marketing','Paid Ads','Social Media','Content'].map(l=><li key={l}><a>{l}</a></li>)}</ul>
+      </div>
+      <div>
+        <p className="footer-col-title">Company</p>
+        <ul className="footer-links">{['About Us','Our Work','Case Studies','News','Careers','Contact'].map(l=><li key={l}><a>{l}</a></li>)}</ul>
+      </div>
+      <div>
+        <p className="footer-col-title">Newsletter</p>
+        <p style={{fontSize:12,color:'rgba(255,255,255,.3)',marginBottom:14,lineHeight:1.7}}>Digital marketing tips & insights for Portuguese businesses, monthly.</p>
+        <div className="newsletter-form">
+          <input className="nl-input" placeholder="your@email.pt" value={nlEmail} onChange={e=>setNlEmail(e.target.value)}/>
+          <button className="nl-btn">→</button>
+        </div>
+        <p style={{fontSize:10,color:'rgba(255,255,255,.2)',marginTop:10,fontFamily:'DM Mono,monospace',letterSpacing:.5}}>No spam. Unsubscribe anytime. GDPR compliant.</p>
+        <div style={{marginTop:20,padding:'14px',background:'rgba(37,211,102,.08)',border:'1px solid rgba(37,211,102,.15)',borderRadius:4,cursor:'pointer'}} onClick={()=>window.open(`https://wa.me/351XXXXXXXXX?text=${encodeURIComponent('Hi Fado Digital, I\'m interested in your services.')}`)}>
+          <div style={{fontSize:13,color:'rgba(255,255,255,.6)'}}>💬 Prefer WhatsApp?</div>
+          <div style={{fontSize:12,color:'#25D366',fontWeight:600,marginTop:3}}>Chat with us directly →</div>
+        </div>
+      </div>
+    </div>
+    <div className="footer-bottom">
+      <span className="footer-copy">© 2026 Fado Digital, Lda. · NIF: XXX XXX XXX · Lisbon, Portugal</span>
+      <div className="footer-legal">
+        {['Privacy Policy','Cookie Policy','Terms of Service','GDPR'].map(l=><a key={l}>{l}</a>)}
+      </div>
+    </div>
+  </footer>;
+}
+
+/* WHATSAPP FLOAT */
+function WAFloat(){
+  const [show,setShow]=useState(false);
+  useEffect(()=>{const t=setTimeout(()=>setShow(true),3000);return()=>clearTimeout(t);},[]);
+  const msg=encodeURIComponent('Hi Fado Digital, I\'m interested in your services.');
+  return <div className="wa-float">
+    {show&&<div className="wa-tooltip"><strong>💬 Chat with us</strong>We reply within minutes!</div>}
+    <div className="wa-bubble" onClick={()=>window.open(`https://wa.me/351XXXXXXXXX?text=${msg}`,'_blank')} onMouseEnter={()=>setShow(true)} onMouseLeave={()=>setShow(false)}>💬</div>
+  </div>;
+}
+
+/* NOTIFICATIONS */
+function Notifs({notifs,remove}){
+  return <div className="notif-wrap">{notifs.map(n=><div key={n.id} className={`notif-item ${n.type==='err'?'err':''}`} onClick={()=>remove(n.id)}><div className="notif-title">{n.title}</div><div className="notif-msg">{n.msg}</div></div>)}</div>;
+}
+
+/* MAIN APP */
+function App(){
+  const [page,setPage]=useState('home');
+  const [lang,setLang]=useState('en');
+  const [notifs,setNotifs]=useState([]);
+  const addNotif=n=>{const id=Date.now();setNotifs(p=>[...p,{...n,id}]);setTimeout(()=>setNotifs(p=>p.filter(x=>x.id!==id)),4500);};
+  const removeNotif=id=>setNotifs(p=>p.filter(n=>n.id!==id));
+
+  const renderPage=()=>{
+    switch(page){
+      case 'home':return <>
+        <Hero setPage={setPage} lang={lang}/>
+        <Ticker/>
+        <Services setPage={setPage}/>
+        <Gallery/>
+        <VideoSection/>
+        <Testimonials/>
+        <News/>
+        <FAQ/>
+        <MapSection/>
+        <Contact addNotif={addNotif} lang={lang}/>
+      </>;
+      case 'services':return <div style={{paddingTop:72}}><Services setPage={setPage}/></div>;
+      case 'work':return <div style={{paddingTop:72}}><Gallery/></div>;
+      case 'news':return <div style={{paddingTop:72}}><News/></div>;
+      case 'contact':return <div style={{paddingTop:72}}><Contact addNotif={addNotif} lang={lang}/></div>;
+      case 'about':return <div style={{paddingTop:72,minHeight:'80vh',background:'var(--navy)',padding:'140px 8% 100px'}}>
+        <div className="sec-eyebrow" style={{color:'var(--gold)'}}>About Us</div>
+        <h2 className="sec-title" style={{color:'white',marginBottom:24}}>We Are <em>Fado Digital</em></h2>
+        <p style={{fontSize:16,color:'rgba(255,255,255,.6)',lineHeight:1.9,maxWidth:640,marginBottom:40}}>Born in Lisbon, built for the world. Fado Digital is a premium digital agency dedicated to helping Portuguese businesses thrive online. We combine creative excellence with data-driven strategies to deliver results that matter. Our name is inspired by Fado — Portugal's soul music — because we believe great digital work should move people the same way.</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:2,maxWidth:700}}>
+          {[['🎯','Our Mission','To be Portugal\'s most trusted digital partner — delivering results, not just reports.'],['👁️','Our Vision','A digital-first Portugal where every business has the online presence it deserves.'],['❤️','Our Values','Transparency, creativity, and genuine care for our clients\' success.']].map(([i,t,d])=><div key={t} style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',padding:'28px 24px'}}><div style={{fontSize:28,marginBottom:12}}>{i}</div><div style={{fontFamily:'Fraunces,serif',fontSize:16,color:'white',marginBottom:8}}>{t}</div><div style={{fontSize:13,color:'rgba(255,255,255,.45)',lineHeight:1.7}}>{d}</div></div>)}
+        </div>
+      </div>;
+      default:return null;
+    }
+  };
+
+  return <div>
+    <Cursor/>
+    <Nav page={page} setPage={setPage} lang={lang} setLang={setLang}/>
+    {renderPage()}
+    <Footer/>
+    <WAFloat/>
+    <CookieBanner/>
+    <Notifs notifs={notifs} remove={removeNotif}/>
+  </div>;
+}
+ReactDOM.render(<React.StrictMode><App/></React.StrictMode>,document.getElementById('root'));
+</script>
+</body>
+</html>
